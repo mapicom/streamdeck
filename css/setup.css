@@ -1,0 +1,117 @@
+:root {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    line-height: 1;
+}
+
+body {
+    background-color: black;
+    width: 100dvw;
+    height: 100dvh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100dvw;
+    height: 100dvh;
+    color: #ecf0f1;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #2c3e50;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #1F2D3B;
+    color: #bdc3c7;
+}
+
+input[type="file"] {
+    padding: 8.5px 10px;
+    display: inline-block;
+    border: 1px solid #2c3e50;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #1F2D3B;
+    color: #bdc3c7;
+    max-width: 322.8px;
+}
+
+.setting_option {
+    display: flex;
+    flex-direction: column;
+    width: 322.8px;
+    max-width: 322.8px;
+    gap: 0.5rem;
+}
+
+.setting_option .title {
+    margin-left: 0.25rem;
+}
+
+.setting_option .note {
+    margin-left: 0.25rem;
+    color: #e74c3c;
+}
+
+b {
+    font-weight: bold;
+}
+
+button {
+    padding: 0.75rem;
+    border-radius: .4rem;
+    background-color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button:hover {
+        background-color: #273747;
+    }
+}
+
+button:active {
+    background-color: #1C2835;
+}
+
+button.save_btn {
+    background-color: #218c74;
+}
+
+button.save_btn.saved {
+    background-color: #27ae60;
+}
+
+button.save_btn.error {
+    background-color: #c0392b;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button.save_btn:hover {
+        background-color: #185B4C;
+    }
+}
+
+button.save_btn:active {
+    background-color: #13473B;
+}
+
+.setting_option h1 {
+    font-size: x-large;
+    font-weight: bold;
+}

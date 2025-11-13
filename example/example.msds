@@ -1,0 +1,29 @@
+block "Scene: Start" #27ae60 {
+    SetCurrentScene "Start"
+}
+
+block "Scene: Main" #27ae60 {
+    SetCurrentScene "Main"
+}
+
+block "Microphone" #2980b9 {
+    ToggleInputMute "Mic/Aux"
+    ToggleSourceFilter "Webcam" "Composite Blur"
+}
+
+block "Desktop Audio" #2980b9 {
+    ToggleInputMute "Desktop Audio"
+}
+
+block "Capture Blur" #9b59b6 {
+    ToggleInputMute "Capture"
+    ToggleSourceFilter "Capture" "Composite Blur"
+}
+
+block "Toggle Webcam" #34495e {
+    ToggleSceneItem "Main" "Webcam"
+}
+
+block "Toggle Record" #c0392b {
+    ToggleRecord
+}
