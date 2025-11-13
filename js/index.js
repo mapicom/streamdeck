@@ -1,12 +1,7 @@
-/*
- *  Novokuznetsk, Siberia @ 12.11.2025
-*/
-
 import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { OBSWebSocket } from 'obs-websocket-js';
 import { Blocks, ExecuteBlock, ParseScript } from "./interpreter.js";
-import { Commands } from './commands.js';
 import eruda from "eruda";
 
 export class Block {

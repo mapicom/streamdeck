@@ -1,7 +1,3 @@
-/*
- *  Novokuznetsk, Siberia @ 13.11.2025
-*/
-
 import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import eruda from "eruda";

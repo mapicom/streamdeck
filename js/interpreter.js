@@ -1,12 +1,7 @@
-import { Block, obs } from "./index.js";
+import { Block } from "./index.js";
 import { Commands } from "./commands.js";
 
 export const Blocks = {};
-
-function trimString(str) {
-    if(str.length < 3) return "";
-    return str.slice(1, str.length-1);
-}
 
 function splitArgs(line) {
     let inQuotes = false;
