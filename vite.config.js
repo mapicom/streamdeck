@@ -4,7 +4,7 @@ export default defineConfig({
     build: {
         target: "esnext",
         rollupOptions: {
-            input: ["index.html", "setup.html"]
+            input: ["index.html", "setup.html", "edit.html"]
         }
     },
 });
