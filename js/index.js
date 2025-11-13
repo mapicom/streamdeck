@@ -71,6 +71,15 @@ function setStatus(new_status) {
 export let obs = null;
 
 document.body.onload = async (event) => {
+    const {value: isAcceptedRisk} = await Preferences.get({
+        key: "accept-risk"
+    });
+
+    if(!isAcceptedRisk) {
+        location.href = "./disclaimer.html";
+        return;
+    }
+
     eruda.init();
 
     // Load user script

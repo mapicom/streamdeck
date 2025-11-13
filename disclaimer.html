@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/disclaimer.css">
+    <title>Mapicom StreamDeck</title>
+</head>
+<body>
+    <main>
+        <div class="icon">⛔</div>
+        <div class="head">Warning!</div>
+        <div class="text">
+            This software uses an unencrypted HTTP connection within your local network.<br>
+This is necessary because WebSocket in Open Broadcaster Software does not support encrypted connections.<br>
+The application does not access the internet unless explicitly configured to connect to OBS through it.<br>
+By continuing, you accept all risks of use.
+        </div>
+        <div class="buttons">
+            <button id="accept-btn" class="save_btn">Accept</button>
+            <button id="quit-btn" class="save_btn error">Quit App</button>
+        </div>
+    </main>
+
+    <script src="./js/disclaimer.js" defer type="module"></script>
+</body>
+</html>

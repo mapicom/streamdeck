@@ -1,0 +1,100 @@
+:root {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    line-height: 1;
+}
+
+body {
+    background-color: black;
+    width: 100dvw;
+    height: 100dvh;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    color: white;
+}
+
+.icon {
+    font-size: 4rem;
+    animation: spin 5s linear infinite;
+    text-align: center;
+}
+
+.head {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.text {
+    text-align: center;
+    font-size: large;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+button {
+    padding: 0.75rem;
+    border-radius: .4rem;
+    background-color: #34495e;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    user-select: none;
+    color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button:hover {
+        background-color: #273747;
+    }
+}
+
+button:active {
+    background-color: #1C2835;
+}
+
+button.save_btn {
+    background-color: #218c74;
+}
+
+button.save_btn.saved {
+    background-color: #27ae60;
+}
+
+button.save_btn.error {
+    background-color: #c0392b;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button.save_btn:hover {
+        background-color: #185B4C;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
