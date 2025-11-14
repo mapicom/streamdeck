@@ -1,11 +1,28 @@
 @font-face {
-    font-family: Montserrat;
+    font-family: MiSans;
     font-weight: 500;
-    src: url("/fonts/Montserrat-Regular.ttf");
+    src: url("/fonts/MiSans-Regular.woff2");
+}
+
+@font-face {
+    font-family: MiSans;
+    font-weight: bold;
+    src: url("/fonts/MiSans-Bold.woff2");
 }
 
 @font-face {
     font-family: Montserrat;
-    font-weight: bold;
-    src: url("/fonts/Montserrat-Bold.ttf");
+    font-weight: 600;
+    src: url("/fonts/Montserrat-SemiBold.ttf");
+}
+
+:root {
+    font-family: MiSans;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    line-height: 1;
 }
