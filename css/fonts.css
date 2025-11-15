@@ -25,4 +25,5 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizelegibility;
     line-height: 1;
+    user-select: none;
 }

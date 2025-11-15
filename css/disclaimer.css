@@ -14,6 +14,7 @@ main {
     flex-direction: column;
     gap: 2rem;
     color: white;
+    padding: 1rem;
 }
 
 .icon {

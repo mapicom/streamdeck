@@ -1,19 +1,17 @@
 
 body {
     background-color: black;
-    width: 100dvw;
-    height: 100dvh;
 }
 
 main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 100dvw;
-    height: 100dvh;
+    width: 100vw;
+    height: 100vh;
     color: #ecf0f1;
 }
 

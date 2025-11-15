@@ -7,10 +7,18 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: center;
+    align-items: center;
     justify-content: center;
-    width: 100dvw;
-    height: 100dvh;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 6rem;
+}
+
+@media (min-width: 700px) {
+    .control_blocks {
+        align-content: center;
+        align-items: unset;
+    }
 }
 
 .block {
