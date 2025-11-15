@@ -20,33 +20,33 @@ if(!existsSync("./output")) {
 
 (async () => {
     nodeHtmlToImage({
-        output: './output/logotype-round-1000x1000.png',
+        output: './output/logotype-round-1024x1024.png',
         html: readFileSync('./logotype.html', 'utf8')
             .replace("_BODY_PADDING_", "1rem")
             .replace("_MAIN_BORDER_RADIUS_", "100px"),
         puppeteerArgs: {
             defaultViewport: {
-                width: 1000,
-                height: 1000
+                width: 1024,
+                height: 1024
             }
         }
     }).then(() => {
-        console.log(`Created "logotype-round-1000x1000.png"`);
+        console.log(`Created "logotype-round-1024x1024.png"`);
     });
 
     nodeHtmlToImage({
-        output: './output/logotype-strong_square-1000x1000.png',
+        output: './output/logotype-strong_square-1024x1024.png',
         html: readFileSync('./logotype.html', 'utf8')
             .replace("_BODY_PADDING_", "0")
             .replace("_MAIN_BORDER_RADIUS_", "0"),
         puppeteerArgs: {
             defaultViewport: {
-                width: 1000,
-                height: 1000
+                width: 1024,
+                height: 1024
             }
         }
     }).then(() => {
-        console.log(`Created "logotype-strong_square-1000x1000.png"`);
+        console.log(`Created "logotype-strong_square-1024x1024.png"`);
     });
 })();
 
