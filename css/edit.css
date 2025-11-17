@@ -12,11 +12,18 @@ main {
 
 header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 3rem;
     margin-bottom: 1rem;
-    flex-direction: row-reverse;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+header .right {
+    display: flex;
+    flex-direction: row-reverse;
     gap: 0.5rem;
 }
 
@@ -71,4 +78,18 @@ button.save_btn.error {
     button.save_btn:hover {
         background-color: #185B4C;
     }
+}
+
+button.delete_btn {
+    background-color: #c0392b;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button.delete_btn:hover {
+        background-color: #a02e22;
+    }
+}
+
+button.delete_btn:active {
+    background-color: #752118;
 }

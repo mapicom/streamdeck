@@ -59,4 +59,58 @@ document.body.onload = async (event) => {
             console.error(err);
         });
     };
+
+    const loadExampleBtnElem = document.getElementById("put-example-btn");
+    loadExampleBtnElem.onclick = async (event) => {
+        try {
+            const res = await fetch("/examples/example.msds");
+            if(res.ok) {
+                res.text().then(data => {
+                    view.dispatch({
+                        changes: {
+                            from: 0,
+                            to: view.state.doc.length,
+                            insert: data
+                        }
+                    });
+                    loadExampleBtnElem.className = "save_btn saved";
+                    setTimeout(() => {
+                        loadExampleBtnElem.className = "";
+                    }, 1000);
+                }).catch(err => {
+                    console.error(err);
+                    loadExampleBtnElem.className = "save_btn error";
+                    setTimeout(() => {
+                        loadExampleBtnElem.className = "";
+                    }, 1000);
+                });
+            } else {
+                console.error(res.status);
+            }
+        } catch (error) {
+            console.error(error);
+            loadExampleBtnElem.className = "save_btn error";
+            setTimeout(() => {
+                loadExampleBtnElem.className = "";
+            }, 1000);
+        }
+    };
+
+    const deleteBtn = document.getElementById("delete-btn");
+    deleteBtn.onclick = async (event) => {
+        if(confirm("Are you sure to delete current script?")) {
+            Filesystem.deleteFile({
+                directory: Directory.Data,
+                path: "user.msds"
+            }).then(res => {
+                view.dispatch({
+                    changes: {
+                        from: 0,
+                        to: view.state.doc.length,
+                        insert: ""
+                    }
+                });
+            }).catch(console.error);
+        }
+    };
 };

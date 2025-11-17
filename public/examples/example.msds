@@ -1,0 +1,20 @@
+block "Scene: Intro" #27ae60 {
+    SetCurrentScene "Intro"
+}
+
+block "Scene: Main" #27ae60 {
+    SetCurrentScene "Main"
+}
+
+block "Toggle Microphone" #2980b9 {
+    ToggleInputMute "Mic/Aux"
+}
+
+block "Capture Blur" #9b59b6 {
+    ToggleInputMute "Capture"
+    ToggleSourceFilter "Capture" "Composite Blur"
+}
+
+block "Toggle Record" #c0392b {
+    ToggleRecord
+}
