@@ -1,6 +1,6 @@
 {
   "name": "mpc-streamdeck",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple stream deck optimized for tablets",
   "main": "index.js",
   "type": "module",
