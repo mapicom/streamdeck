@@ -64,6 +64,7 @@ body {
     display: flex;
     width: 100dvw;
     justify-content: center;
+    cursor: pointer;
 }
 
 .status span {
@@ -118,4 +119,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.no-blocks {
+    color: #7f8c8d;
+    font-size: xx-large;
+    text-align: center;
 }

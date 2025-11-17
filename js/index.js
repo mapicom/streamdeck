@@ -36,6 +36,10 @@ function handleBlock(event) {
 }
 
 const statusElem = document.getElementById("status");
+statusElem.onclick = async (event) => {
+    connectWS();
+};
+
 function setStatus(new_status) {
     statusElem.className = new_status;
     const blocksElem = document.getElementById("blocks");
@@ -47,7 +51,7 @@ function setStatus(new_status) {
             });
             break;
         case "offline":
-            statusElem.innerText = "Offline";
+            statusElem.innerText = "Offline. Click here to connect.";
             blocksElem.childNodes.forEach(block => {
                 block.className = "block disabled";
             });
@@ -64,6 +68,12 @@ function setStatus(new_status) {
 }
 
 export let obs = null;
+let isConnecting = false;
+let hasWebSocketHost = false;
+let webSocketHost = null;
+let webSocketPass = null;
+
+const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's script in setup.</span>`;
 
 document.body.onload = async (event) => {
     const {value: isAcceptedRisk} = await Preferences.get({
@@ -78,7 +88,7 @@ document.body.onload = async (event) => {
     eruda.init();
 
     // Load user script
-    Filesystem.readFile({
+    await Filesystem.readFile({
         path: "user.msds",
         directory: Directory.Data,
         encoding: Encoding.UTF8
@@ -98,6 +108,11 @@ document.body.onload = async (event) => {
         console.error(err);
     });
 
+    const blocksElem = document.getElementById("blocks");
+    if(blocksElem.childNodes.length === 0) {
+        blocksElem.innerHTML = noBlocksText;
+    }
+
     const {value: wsHost} = await Preferences.get({
         key: "ws-hostname"
     });
@@ -109,8 +124,13 @@ document.body.onload = async (event) => {
     if(!wsHost) {
         return;
     }
+    
+    hasWebSocketHost = true;
+    webSocketHost = wsHost;
+    if(wsPass) webSocketPass = wsPass;
+    statusElem.innerText = "Offline. Click here to connect.";
 
-    console.log(`Will use address ${wsHost}`);
+    console.log(`Will use address ${webSocketHost}`);
 
     if(location.hash === "#design") {
         const blocksElem = document.getElementById("blocks");
@@ -121,34 +141,39 @@ document.body.onload = async (event) => {
     }
 
     console.log("Running initWS...");
-    initWS(wsHost, wsPass);
+    initWS();
 };
 
-async function initWS(wsHost, wsPass = null) {
-    let isConnecting = false;
+async function initWS() {
     obs = new OBSWebSocket();
-    setInterval(async () => {
-        if(isConnecting) return;
-        if(!obs.identified) {
-            isConnecting = true;
-            setStatus("connecting");
-            try {
-                if(!wsPass) await obs.connect(wsHost);
-                else await obs.connect(wsHost, wsPass);
-
-                isConnecting = false;
-                console.log(obs.identified);
-                setStatus("online");
-            } catch (error) {
-                console.error(error);
-                isConnecting = false;
-            }
-        }
-    }, 1000);
 
     obs.on("ConnectionClosed", (error) => {
         setStatus("offline");
     });
+    
+    await connectWS();
+}
+
+async function connectWS() {
+    if(!hasWebSocketHost) return;
+    if(isConnecting) return;
+    if(!obs.identified) {
+        isConnecting = true;
+        setStatus("connecting");
+        try {
+            if(!webSocketPass) await obs.connect(webSocketHost);
+            else await obs.connect(webSocketHost, webSocketPass);
+
+            isConnecting = false;
+            console.log(obs.identified);
+            setStatus("online");
+        } catch (error) {
+            console.error(error);
+            isConnecting = false;
+        }
+    } else {
+        obs.disconnect();
+    }
 }
 
 const wakeLockElem = document.getElementById("wake-lock");
