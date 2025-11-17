@@ -21,6 +21,12 @@ header {
     padding-right: 1rem;
 }
 
+header .left {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
 header .right {
     display: flex;
     flex-direction: row-reverse;
