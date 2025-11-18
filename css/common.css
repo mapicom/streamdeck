@@ -18,6 +18,7 @@ body {
     .control_blocks {
         align-content: center;
         align-items: unset;
+        padding-top: unset;
     }
 }
 
