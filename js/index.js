@@ -74,6 +74,7 @@ let webSocketHost = null;
 let webSocketPass = null;
 
 const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's script in setup.</span>`;
+const errorText = `<span class="no-blocks">You have an error in your script at {{_LINE_}} line.</span>`;
 
 document.body.onload = async (event) => {
     const {value: isAcceptedRisk} = await Preferences.get({
@@ -86,6 +87,9 @@ document.body.onload = async (event) => {
     }
 
     eruda.init();
+
+    const blocksElem = document.getElementById("blocks");
+    let gotError = false;
 
     // Load user script
     await Filesystem.readFile({
@@ -102,14 +106,15 @@ document.body.onload = async (event) => {
             });
         } else {
             console.error(`Error on ${result} line in user's script`);
+            blocksElem.innerHTML = errorText.replace("{{_LINE_}}", result.toString());
+            gotError = true;
         }
     })
     .catch(err => {
         console.error(err);
     });
 
-    const blocksElem = document.getElementById("blocks");
-    if(blocksElem.childNodes.length === 0) {
+    if(!gotError && blocksElem.childNodes.length === 0) {
         blocksElem.innerHTML = noBlocksText;
     }
 

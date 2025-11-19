@@ -35,8 +35,6 @@ function splitArgs(line) {
         return null;
     }
 
-    console.log(args);
-
     return args;
 }
 
@@ -58,7 +56,12 @@ export async function ParseScript(content) {
                 const blockLine = lines[j].trim();
                 if(blockLine === "}") break;
 
-                block.code.push(splitArgs(blockLine));
+                const lineArgs = splitArgs(blockLine);
+                if(lineArgs === null) {
+                    return j+1;
+                }
+
+                block.code.push(lineArgs);
             }
 
             Blocks[block.id] = block;
