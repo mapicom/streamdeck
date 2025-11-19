@@ -114,7 +114,9 @@ document.body.onload = async (event) => {
         console.error(err);
     });
 
-    if(!gotError && blocksElem.childNodes.length === 0) {
+    if(gotError) return;
+
+    if(blocksElem.childNodes.length === 0) {
         blocksElem.innerHTML = noBlocksText;
     }
 
