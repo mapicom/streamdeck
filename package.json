@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "vite build && cap run android",
+    "start": "vite build --mode development && cap run",
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && cap sync",
+    "preview": "vite preview",
+    "devices": "cap run --list"
   },
   "keywords": [
     "obs",
