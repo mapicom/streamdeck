@@ -1,4 +1,4 @@
-import { obs } from "./index.js";
+import { obs, showNotification } from "./index.js";
 
 export const Commands = {
     "SetCurrentScene": async function (args) {
@@ -9,12 +9,14 @@ export const Commands = {
                 });
             } catch (error) {
                 console.error(error);
+                showNotification(`${args[0]}: ${error}`, 8000);
                 return false;
             }
 
             return true;
         } else {
             console.error(`${args[0]}: Missed required scene name`);
+            showNotification(`${args[0]}: Missed required scene name`, 8000);
             return false;
         }
     },
@@ -34,6 +36,7 @@ export const Commands = {
                     });
                 } catch (error) {
                     console.error(`${args[0]}: ${error}`);
+                    showNotification(`${args[0]}: ${error}`, 8000);
                     return false;
                 }
             } else {
@@ -44,6 +47,7 @@ export const Commands = {
                     });
                 } catch (error) {
                     console.error(`${args[0]}: ${error}`);
+                    showNotification(`${args[0]}: ${error}`, 8000);
                     return false;
                 }
             }
@@ -51,6 +55,7 @@ export const Commands = {
             return true;
         } else {
             console.error(`${args[0]}: Missed required input name`);
+            showNotification(`${args[0]}: Missed required input name`, 8000);
             return false;
         }
     },
@@ -77,6 +82,7 @@ export const Commands = {
                     });
                 } catch (error) {
                     console.error(`${args[0]}: ${error}`);
+                    showNotification(`${args[0]}: ${error}`, 8000);
                     return false;
                 }
             } else {
@@ -90,6 +96,7 @@ export const Commands = {
             return true;
         } else {
             console.error(`${args[0]}: Missed required source and filter name`);
+            showNotification(`${args[0]}: Missed required source and filter name`, 8000);
             return false;
         }
     },
@@ -111,6 +118,7 @@ export const Commands = {
                 itemId = sceneItemId;
             } catch (error) {
                 console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
                 return false;
             }
 
@@ -130,6 +138,7 @@ export const Commands = {
                     });
                 } catch (error) {
                     console.error(`${args[0]}: ${error}`);
+                    showNotification(`${args[0]}: ${error}`, 8000);
                     return false;
                 }
             } else {
@@ -141,12 +150,14 @@ export const Commands = {
                     });
                 } catch (error) {
                     console.error(`${args[0]}: ${error}`);
+                    showNotification(`${args[0]}: ${error}`, 8000);
                 }
             }
 
             return true;
         } else {
             console.error(`${args[0]}: Missed required scene and source name`);
+            showNotification(`${args[0]}: Missed required scene and source name`, 8000);
             return false;
         }
     },
@@ -163,6 +174,7 @@ export const Commands = {
                 await obs.call("ToggleRecord");
             } catch (error) {
                 console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
             }
         } else {
             try {
@@ -170,6 +182,7 @@ export const Commands = {
                 else await obs.call("StopRecord");
             } catch (error) {
                 console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
             }
         }
     }

@@ -1,4 +1,4 @@
-import { Block } from "./index.js";
+import { Block, showNotification } from "./index.js";
 import { Commands } from "./commands.js";
 
 export const Blocks = {};
@@ -29,13 +29,18 @@ function splitArgs(line) {
             temp += chars[i];
         }
     }
-    
+
     if(quotesCount%2 !== 0) {
         console.error("Unclosed quote found");
         return null;
     }
 
-    return args;
+    let resultArgs = [];
+    args.forEach(arg => {
+        if(arg.trim() !== "") resultArgs.push(arg);
+    });
+
+    return resultArgs;
 }
 
 export async function ParseScript(content) {
@@ -79,8 +84,9 @@ export async function ParseScript(content) {
 export async function ExecuteBlock(blockId) {
     if(!Blocks[blockId]) return;
     Blocks[blockId].code.forEach(line => {
-        if(line.length !== 0 && Commands[line[0]]) {
-            Commands[line[0]](line);
+        if(line.length !== 0) {
+            if(Commands[line[0]]) Commands[line[0]](line);
+            else showNotification(`Unknown command "${line[0]}"`);
         }
     });
 }

@@ -1,0 +1,23 @@
+
+#notification {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 2%;
+    max-width: 300px;
+    max-height: 180px;
+    background-color: #c23616;
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: #ecf0f1;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+#notification.visible {
+    opacity: 1;
+    visibility: visible;
+}

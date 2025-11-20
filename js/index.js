@@ -46,21 +46,24 @@ function setStatus(new_status) {
     switch (new_status) {
         case "online":
             statusElem.innerText = "Online";
-            blocksElem.childNodes.forEach(block => {
-                block.className = "block";
-            });
+            if(blocksCount > 0)
+                blocksElem.childNodes.forEach(block => {
+                    block.className = "block";
+                });
             break;
         case "offline":
             statusElem.innerText = "Offline. Click here to connect.";
-            blocksElem.childNodes.forEach(block => {
-                block.className = "block disabled";
-            });
+            if(blocksCount > 0)
+                blocksElem.childNodes.forEach(block => {
+                    block.className = "block disabled";
+                });
             break;
         case "connecting":
             statusElem.innerText = "Connecting...";
-            blocksElem.childNodes.forEach(block => {
-                block.className = "block disabled";
-            });
+            if(blocksCount > 0)
+                blocksElem.childNodes.forEach(block => {
+                    block.className = "block disabled";
+                });
             break;
         default:
             statusElem.innerText = "Unknown status!";
@@ -72,9 +75,9 @@ let isConnecting = false;
 let hasWebSocketHost = false;
 let webSocketHost = null;
 let webSocketPass = null;
+let blocksCount = 0;
 
 const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's script in setup.</span>`;
-const errorText = `<span class="no-blocks">You have an error in your script at {{_LINE_}} line.</span>`;
 
 document.body.onload = async (event) => {
     const {value: isAcceptedRisk} = await Preferences.get({
@@ -89,7 +92,6 @@ document.body.onload = async (event) => {
     eruda.init();
 
     const blocksElem = document.getElementById("blocks");
-    let gotError = false;
 
     // Load user script
     await Filesystem.readFile({
@@ -103,20 +105,18 @@ document.body.onload = async (event) => {
         if(result === true) {
             Object.values(Blocks).forEach(block => {
                 block.addToPage();
+                blocksCount++;
             });
         } else {
             console.error(`Error on ${result} line in user's script`);
-            blocksElem.innerHTML = errorText.replace("{{_LINE_}}", result.toString());
-            gotError = true;
+            showNotification(`You have an error in your script at ${result} line.`);
         }
     })
     .catch(err => {
         console.error(err);
     });
 
-    if(gotError) return;
-
-    if(blocksElem.childNodes.length === 0) {
+    if(blocksCount === 0) {
         blocksElem.innerHTML = noBlocksText;
     }
 
@@ -197,8 +197,25 @@ wakeLockElem.onclick = async (event) => {
             };
         } catch (error) {
             console.error(error);
+            showNotification("Unable to set wake lock state.", 5000);
         }
     } else {
         wakeLock.release();
     }
 };
+
+const notificationElem = document.getElementById("notification");
+
+notificationElem.onclick = (event) => {
+    notificationElem.className = "";
+};
+
+export function showNotification(text, duration = 0) {
+    notificationElem.innerText = text;
+    notificationElem.className = "visible";
+    if(duration > 0) {
+        setTimeout(() => {
+            notificationElem.className = "";
+        }, duration);
+    }
+}
