@@ -1,6 +1,5 @@
 import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-import eruda from "eruda";
 
 const hostnameElem = document.getElementById("hostname");
 const passwordElem = document.getElementById("password");
@@ -8,8 +7,6 @@ const scriptFileElem = document.getElementById("script-file");
 const saveBtnElem = document.getElementById("save-btn");
 
 document.body.onload = async (event) => {
-    eruda.init();
-
     const {value: wsHost} = await Preferences.get({
         key: "ws-hostname"
     });

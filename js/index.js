@@ -2,7 +2,6 @@ import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { OBSWebSocket } from 'obs-websocket-js';
 import { Blocks, ExecuteBlock, ParseScript } from "./interpreter.js";
-import eruda from "eruda";
 
 export class Block {
     constructor(name, color) {
@@ -88,8 +87,6 @@ document.body.onload = async (event) => {
         location.href = "./disclaimer.html";
         return;
     }
-
-    eruda.init();
 
     const blocksElem = document.getElementById("blocks");
 

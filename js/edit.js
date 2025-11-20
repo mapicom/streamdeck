@@ -4,11 +4,8 @@ import { sass } from "@codemirror/lang-sass";
 import { defaultKeymap } from "@codemirror/commands"
 import { oneDark } from "@codemirror/theme-one-dark";
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-import eruda from "eruda";
 
 document.body.onload = async (event) => {
-    eruda.init();
-
     let content = '';
     // Load user script
     await Filesystem.readFile({
