@@ -22,6 +22,7 @@
     "@capacitor/core": "^7.4.4",
     "@capacitor/device": "^7.0.2",
     "@capacitor/filesystem": "^7.1.4",
+    "@capacitor/haptics": "^7.0.2",
     "@capacitor/ios": "^7.4.4",
     "@capacitor/preferences": "^7.0.2",
     "@codemirror/lang-sass": "^6.0.2",

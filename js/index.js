@@ -2,6 +2,7 @@ import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { OBSWebSocket } from 'obs-websocket-js';
 import { Blocks, ExecuteBlock, ParseScript } from "./interpreter.js";
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 export class Block {
     constructor(name, color) {
@@ -31,7 +32,12 @@ function handleBlock(event) {
     if(element.classList.length === 2) return;
     console.log(`Clicked on ${element.dataset.id}`);
     const blockId = element?.dataset?.id;
-    if(blockId && Blocks[blockId]) ExecuteBlock(blockId);
+    if(blockId && Blocks[blockId]) {
+        ExecuteBlock(blockId);
+        Haptics.impact({
+            style: ImpactStyle.Medium
+        }).catch(console.error);
+    }
 }
 
 const statusElem = document.getElementById("status");
