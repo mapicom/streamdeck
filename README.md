@@ -36,7 +36,7 @@ Inside the block, you list the commands that will be sent to OBS Studio. At the 
 
 Command names are inspired by the original OBS WebSocket naming, though some may differ slightly.
 
-See the list of commands in `docs/COMMANDS.md`.
+See the list of [current commands in `docs/COMMANDS.md`](docs/COMMANDS.md).
 
 After writing the commands for the block, close it with a closing curly brace `}` on a new line.
 
