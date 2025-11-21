@@ -43,6 +43,7 @@ block "Microphone" #2980b9 {
 ## Сторонние библиотеки, используемый в этом проекте
 * [Capacitor](https://capacitorjs.com/) и его официальные плагины.
 * [obs-websocket-js](https://github.com/obs-websocket-community-projects/obs-websocket-js)
+* [CodeMirror](https://codemirror.net/)
 * [Vite](https://vite.dev/) для упаковки веб-приложения.
 * [node-html-to-image](github.com/frinyvonnick/node-html-to-image) для рендеринга логотипа.
 * ... и их зависимости.

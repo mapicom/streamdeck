@@ -45,6 +45,7 @@ The configuration file must end with the `.msds` extension.
 ## Third-party libraries used in this project
 * [Capacitor](https://capacitorjs.com/) and its official plugins.
 * [obs-websocket-js](https://github.com/obs-websocket-community-projects/obs-websocket-js)
+* [CodeMirror](https://codemirror.net/)
 * [Vite](https://vite.dev/) for packaging the web application.
 * [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image) for rendering the logo.
 * ... and their dependencies.
