@@ -95,7 +95,7 @@ document.body.onload = async (event) => {
 
     const deleteBtn = document.getElementById("delete-btn");
     deleteBtn.onclick = async (event) => {
-        if(confirm("Are you sure to delete current script?")) {
+        if(confirm("Are you sure to delete current configuration?")) {
             Filesystem.deleteFile({
                 directory: Directory.Data,
                 path: "user.msds"

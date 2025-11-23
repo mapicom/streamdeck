@@ -82,7 +82,7 @@ let webSocketHost = null;
 let webSocketPass = null;
 let blocksCount = 0;
 
-const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's script in setup.</span>`;
+const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's configuration in setup.</span>`;
 
 document.body.onload = async (event) => {
     const {value: isAcceptedRisk} = await Preferences.get({
@@ -112,7 +112,7 @@ document.body.onload = async (event) => {
             });
         } else {
             console.error(`Error on ${result} line in user's script`);
-            showNotification(`You have an error in your script at ${result} line.`);
+            showNotification(`You have an error in your configuration at ${result} line.`);
         }
     })
     .catch(err => {

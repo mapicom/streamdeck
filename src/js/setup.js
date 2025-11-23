@@ -49,45 +49,35 @@ saveBtnElem.onclick = async (event) => {
 
     if(scriptFileElem.files.length === 1) {
         const file = scriptFileElem.files[0];
-        if(file.name.length > 5 && file.name.slice(file.name.length-4) === "msds") {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const content = event.target.result;
-                Filesystem.writeFile({
-                    path: "user.msds",
-                    data: content,
-                    directory: Directory.Data,
-                    encoding: Encoding.UTF8
-                }).then(res => {
-                    console.log(res);
-                    saveBtnElem.textContent = "Saved";
-                    saveBtnElem.className = "save_btn saved";
-                    setTimeout(() => {
-                        saveBtnElem.textContent = "Save";
-                        saveBtnElem.className = "save_btn";
-                    }, 1000);
-                })
-                .catch(error => {
-                    console.error(error);
-                    saveBtnElem.textContent = "Error";
-                    saveBtnElem.className = "save_btn error";
-                    setTimeout(() => {
-                        saveBtnElem.textContent = "Save";
-                        saveBtnElem.className = "save_btn";
-                    }, 1000);
-                });
-            };
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const content = event.target.result;
+            Filesystem.writeFile({
+                path: "user.msds",
+                data: content,
+                directory: Directory.Data,
+                encoding: Encoding.UTF8
+            }).then(res => {
+                console.log(res);
+                saveBtnElem.textContent = "Saved";
+                saveBtnElem.className = "save_btn saved";
+                setTimeout(() => {
+                    saveBtnElem.textContent = "Save";
+                    saveBtnElem.className = "save_btn";
+                }, 1000);
+            })
+            .catch(error => {
+                console.error(error);
+                saveBtnElem.textContent = "Error";
+                saveBtnElem.className = "save_btn error";
+                setTimeout(() => {
+                    saveBtnElem.textContent = "Save";
+                    saveBtnElem.className = "save_btn";
+                }, 1000);
+            });
+        };
 
-            reader.readAsText(file);
-        } else {
-            console.log(file.type, file.name);
-            saveBtnElem.textContent = "Select .msds file";
-            saveBtnElem.className = "save_btn error";
-            setTimeout(() => {
-                saveBtnElem.textContent = "Save";
-                saveBtnElem.className = "save_btn";
-            }, 1000);
-        }
+        reader.readAsText(file);
     } else {
         saveBtnElem.textContent = "Saved";
         saveBtnElem.className = "save_btn saved";
