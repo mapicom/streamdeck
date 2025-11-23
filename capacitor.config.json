@@ -1,7 +1,7 @@
 {
   "appId": "org.mapicom.streamdeck",
   "appName": "MPC StreamDeck",
-  "webDir": "dist",
+  "webDir": "src/dist",
   "server": {
 	  "androidScheme": "http",
 	  "cleartext": true
