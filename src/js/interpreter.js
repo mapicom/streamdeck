@@ -48,6 +48,7 @@ export async function ParseScript(content) {
     for(let i = 0; i < lines.length; i++) {
         const line = lines[i].trim();
         if(line === "") continue;
+        if(line.length >= 2 && line.slice(0, 2) === "//") continue;
 
         const args = splitArgs(line);
         if(args === null) {
