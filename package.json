@@ -16,7 +16,7 @@
     "websocket"
   ],
   "author": "Maksim Pinigin <at@pinig.in>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@capacitor/android": "^8.0.0",
     "@capacitor/app": "^8.0.0",
