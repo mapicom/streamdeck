@@ -1,4 +1,5 @@
 # Mapicom StreamDeck
+![Screenshot of the application](/docs/assets/screenshot.webp)
 This application allows you to use your tablet or other mobile device to quickly control OBS Studio functions through its built-in WebSocket server.
 
 Originally, it was intended to be a simple web application running in a browser, but Security Context limitations made this impossible, and running it via HTTPS is not feasible because the OBS WebSocket server operates in an unsecured mode*. Therefore, this application uses Capacitor, which allows it to run as a native Android or iOS application, albeit through a WebView.
