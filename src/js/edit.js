@@ -1,3 +1,6 @@
+// Copyright (c) Maksim Pinigin <at@pinig.in>. Licensed under the MIT Licence.
+// See the LICENCE file in the repository root for full licence text.
+
 import { basicSetup } from "codemirror";
 import { EditorView, keymap } from "@codemirror/view";
 import { sass } from "@codemirror/lang-sass";
