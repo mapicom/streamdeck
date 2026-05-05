@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^8.3.1",
-    "node-html-to-image": "^5.0.0",
+    "node-html-snap-image": "^6.0.2",
     "vite": "^8.0.10"
   }
 }
