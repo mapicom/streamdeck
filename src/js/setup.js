@@ -8,6 +8,8 @@ const hostnameElem = document.getElementById("hostname");
 const passwordElem = document.getElementById("password");
 const scriptFileElem = document.getElementById("script-file");
 const saveBtnElem = document.getElementById("save-btn");
+const checkboxElem = document.getElementById("autoreconnect");
+const checkboxOptionElem = document.getElementById("checkbox-option");
 
 document.body.onload = async (event) => {
     const {value: wsHost} = await Preferences.get({
@@ -25,6 +27,19 @@ document.body.onload = async (event) => {
     if(wsPass) {
         passwordElem.value = wsPass;
     }
+
+    const {value: autoreconnect} = await Preferences.get({
+        key: "auto-reconnect"
+    });
+
+    if(autoreconnect) {
+        if(autoreconnect === "1") checkboxElem.checked = true;
+        else checkboxElem.checked = false;
+    }
+};
+
+checkboxOptionElem.onclick = async (event) => {
+    checkboxElem.checked = !checkboxElem.checked;
 };
 
 saveBtnElem.onclick = async (event) => {
@@ -47,6 +62,18 @@ saveBtnElem.onclick = async (event) => {
         await Preferences.set({
             key: "ws-password",
             value: passwordElem.value
+        });
+    }
+
+    if(checkboxElem.checked) {
+        await Preferences.set({
+            key: "auto-reconnect",
+            value: "1"
+        });
+    } else {
+        await Preferences.set({
+            key: "auto-reconnect",
+            value: "0"
         });
     }
 

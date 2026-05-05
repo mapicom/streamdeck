@@ -45,7 +45,10 @@ function handleBlock(event) {
 
 const statusElem = document.getElementById("status");
 statusElem.onclick = async (event) => {
-    connectWS();
+    if(autoReconnect && reconnectInterval === null)
+        reconnectInterval = setInterval(connectWS, 1000, true)
+    else
+        connectWS();
 };
 
 function setStatus(new_status) {
@@ -84,6 +87,8 @@ let hasWebSocketHost = false;
 let webSocketHost = null;
 let webSocketPass = null;
 let blocksCount = 0;
+let autoReconnect = false;
+let reconnectInterval = null;
 
 const noBlocksText = `<span class="no-blocks">There is no blocks yet.<br>Create or upload user's configuration in setup.</span>`;
 
@@ -137,6 +142,12 @@ document.body.onload = async (event) => {
     if(!wsHost) {
         return;
     }
+
+    const {value: autoReconnectParam} = await Preferences.get({
+        key: "auto-reconnect"
+    });
+
+    if(autoReconnectParam) autoReconnect = parseInt(autoReconnectParam);
     
     hasWebSocketHost = true;
     webSocketHost = wsHost;
@@ -164,10 +175,11 @@ async function initWS() {
         setStatus("offline");
     });
     
-    await connectWS();
+    if(autoReconnect) reconnectInterval = setInterval(connectWS, 1000, true);
+    else await connectWS();
 }
 
-async function connectWS() {
+async function connectWS(isAutoReconnect = false) {
     if(!hasWebSocketHost) return;
     if(isConnecting) return;
     if(!obs.identified) {
@@ -185,7 +197,10 @@ async function connectWS() {
             isConnecting = false;
         }
     } else {
-        obs.disconnect();
+        if(!isAutoReconnect) {
+            obs.disconnect();
+            clearInterval(reconnectInterval);
+        }
     }
 }
 
