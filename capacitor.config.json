@@ -2,6 +2,14 @@
   "appId": "org.mapicom.streamdeck",
   "appName": "MPC StreamDeck",
   "webDir": "src/dist",
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "style": "DARK",
+      "hidden": false,
+      "animation": "NONE"
+    }
+  },
   "server": {
 	  "androidScheme": "http",
 	  "cleartext": true
