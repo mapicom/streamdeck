@@ -87,10 +87,11 @@ export async function ParseScript(content) {
 
 export async function ExecuteBlock(blockId) {
     if(!Blocks[blockId]) return;
-    Blocks[blockId].code.forEach(line => {
+    for(let i = 0; i < Blocks[blockId].code.length; i++) {
+        const line = Blocks[blockId].code[i];
         if(line.length !== 0) {
-            if(Commands[line[0]]) Commands[line[0]](line);
+            if(Commands[line[0]]) await Commands[line[0]](line);
             else showNotification(`Unknown command "${line[0]}"`);
         }
-    });
+    }
 }
