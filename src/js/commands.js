@@ -9,7 +9,8 @@ export const Commands = {
     "SetCurrentScene": async function (args) {
         if(args.length === 2) {
             try {
-                await obs.call("SetCurrentProgramScene", {
+                const { studioModeEnabled } = await obs.call("GetStudioModeEnabled");
+                await obs.call((studioModeEnabled ? "SetCurrentPreviewScene" : "SetCurrentProgramScene"), {
                     sceneName: args[1]
                 });
             } catch (error) {
