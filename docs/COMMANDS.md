@@ -16,3 +16,9 @@ Arguments specified in `< >` brackets are optional.
   - Set or toggle source visibility on specific scene.
 * `ToggleRecord <0 - off, 1 - on>`
   - Set or toggle recording state.
+* `ToggleStudioMode <0 - off, 1 - on>`
+  - Set or toggle studio mode.
+* `TriggerStudioModeTransition`
+  - Trigger scene transition in studio mode.
+* `Sleep [Duration in ms]`
+  - Wait the specified number of milliseconds before executing the next command.

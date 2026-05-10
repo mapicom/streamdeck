@@ -3,6 +3,8 @@
 
 import { obs, showNotification } from "./index.js";
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const Commands = {
     "SetCurrentScene": async function (args) {
         if(args.length === 2) {
@@ -187,6 +189,59 @@ export const Commands = {
                 console.error(`${args[0]}: ${error}`);
                 showNotification(`${args[0]}: ${error}`, 8000);
             }
+        }
+    },
+
+    "ToggleStudioMode": async function (args) {
+        let forceToggle = null;
+        if(args.length === 2) {
+            if(args[1] === "1") forceToggle = true;
+            else if(args[1] === "0") forceToggle = false;
+        }
+
+        if(forceToggle === null) {
+            try {
+                const { studioModeEnabled } = await obs.call("GetStudioModeEnabled");
+                await obs.call("SetStudioModeEnabled", {
+                    studioModeEnabled: !studioModeEnabled
+                });
+            } catch (error) {
+                console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
+            }
+        } else {
+            try {
+                await obs.call("SetStudioModeEnabled", {
+                    studioModeEnabled: forceToggle
+                });
+            } catch (error) {
+                console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
+            }
+        }
+    },
+
+    "TriggerStudioModeTransition": async function (args) {
+        try {
+            await obs.call("TriggerStudioModeTransition");
+        } catch (error) {
+            console.error(`${args[0]}: ${error}`);
+            showNotification(`${args[0]}: ${error}`, 8000);
+        }
+    },
+    
+    "Sleep": async function (args) {
+        if(args.length > 1) {
+            try {
+                await sleep(parseInt(args[1]));
+            } catch (error) {
+                console.error(`${args[0]}: ${error}`);
+                showNotification(`${args[0]}: ${error}`, 8000);
+            }
+        } else {
+            console.error(`${args[0]}: Missed required milliseconds`);
+            showNotification(`${args[0]}: Missed required milliseconds`, 8000);
+            return false;
         }
     }
 };
